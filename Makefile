@@ -8,33 +8,35 @@
 #					: make clean - remove objetos e executável
 #---------------------------------------------------------------------
 
-CC = g++
+CC = gcc
 LIBS = -lm
 SRC = src
 OBJ = obj
 INC = include
 BIN = bin
-OBJS = $(OBJ)/main.o $(OBJ)/huffmanCompress.o $(OBJ)/huffmanDecompress.o
-HDRS = $(INC)/huffmanCompress.hpp $(INC)/huffmanDecompress.hpp
+OBJS = $(OBJ)/main.o $(OBJ)/List.o
+HDRS = $(INC)/List.h $(INC)/HuffmanCompress.h $(INC)/HuffmanDecompress.h
 CFLAGS = -Wall -c -I$(INC)
 
 EXE = $(BIN)/main
 
 all:  $(EXE)
 	$(EXE) descompactado.txt compactado.txt -c
-	$(EXE) compactado.txt descompactado-final.txt -d
 
 $(BIN)/main: $(OBJS)
 	$(CC) -g -o $(BIN)/main $(OBJS) $(LIBS)
 
-$(OBJ)/main.o: $(HDRS) $(SRC)/main.cpp
-	$(CC) $(CFLAGS) -o $(OBJ)/main.o $(SRC)/main.cpp
+$(OBJ)/main.o: $(HDRS) $(SRC)/main.c
+	$(CC) $(CFLAGS) -o $(OBJ)/main.o $(SRC)/main.c
 
-$(OBJ)/huffmanCompress.o: $(HDRS) $(SRC)/huffmanCompress.cpp
-	$(CC) $(CFLAGS) -o $(OBJ)/huffmanCompress.o $(SRC)/huffmanCompress.cpp
+$(OBJ)/List.o: $(HDRS) $(SRC)/List.c
+	$(CC) $(CFLAGS) -o $(OBJ)/List.o $(SRC)/List.c
 
-$(OBJ)/huffmanDecompress.o: $(HDRS) $(SRC)/huffmanDecompress.cpp
-	$(CC) $(CFLAGS) -o $(OBJ)/huffmanDecompress.o $(SRC)/huffmanDecompress.cpp
+$(OBJ)/HuffmanCompress.o: $(HDRS) $(SRC)/HuffmanCompress.c
+	$(CC) $(CFLAGS) -o $(OBJ)/HuffmanCompress.o $(SRC)/HuffmanCompress.c
+
+$(OBJ)/HuffmanDecompress.o: $(HDRS) $(SRC)/HuffmanDecompress.c
+	$(CC) $(CFLAGS) -o $(OBJ)/HuffmanDecompress.o $(SRC)/HuffmanDecompress.c
 	
 clean:
 	rm -f $(EXE) $(OBJS) gmon.out
