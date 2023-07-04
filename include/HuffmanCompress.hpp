@@ -36,6 +36,7 @@ public:
   void countFrequency(const char *input);
   string encode(Dictionary *dictionary, const char *input);
   void saveCompressedFile(const char *output, string code);
+  void saveIndex(const char *output);
   void compress(const char *input, const char *output);
 };
 

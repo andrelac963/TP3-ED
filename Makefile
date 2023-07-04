@@ -22,6 +22,7 @@ EXE = $(BIN)/main
 
 all:  $(EXE)
 	$(EXE) texto.txt compactado.bin -c
+	$(EXE) compactado.bin descompactado.txt -d
 
 $(BIN)/main: $(OBJS)
 	$(CC) -g -o $(BIN)/main $(OBJS) $(LIBS)
@@ -48,4 +49,4 @@ $(OBJ)/Dictionary.o: $(HDRS) $(SRC)/Dictionary.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/Dictionary.o $(SRC)/Dictionary.cpp
 
 clean:
-	rm -f $(EXE) $(OBJS) gmon.out compactado.bin descompactado.txt
+	rm -f $(EXE) $(OBJS) gmon.out compactado.bin descompactado.txt $(BIN)/*

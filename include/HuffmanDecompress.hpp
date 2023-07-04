@@ -20,15 +20,20 @@
 
 using namespace std;
 
+#define TAM 257
+
 class Dictionary;
 
 class HuffmanDecompress
 {
+private:
+  unsigned int frequency[TAM] = {0};
+
 public:
   HuffmanDecompress();
   ~HuffmanDecompress();
-  Dictionary *readDictionary(const char *input);
-  string decode(Dictionary *dictionary, const char *input);
+  void readIndex(const char *input);
+  void decode(const char *input, const char *output, Node *root);
   void decompress(const char *input, const char *output);
 };
 

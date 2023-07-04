@@ -7,10 +7,12 @@
 
 #include "HuffmanCompress.hpp"
 
+// Construtor
 HuffmanCompress::HuffmanCompress()
 {
 }
 
+// Destrutor
 HuffmanCompress::~HuffmanCompress()
 {
 }
@@ -65,6 +67,7 @@ string HuffmanCompress::encode(Dictionary *dictionary, const char *input)
   return code;
 }
 
+// Salva o arquivo de saída com o código do arquivo de entrada codificado em binário
 void HuffmanCompress::saveCompressedFile(const char *output, string code)
 {
   ofstream file(output, ios::binary);
@@ -74,7 +77,9 @@ void HuffmanCompress::saveCompressedFile(const char *output, string code)
     int j = 7;
     unsigned char mask, byte = 0;
 
-    for (int i = 0; i < code.length(); i++)
+    int size = code.length();
+
+    for (int i = 0; i < size; i++)
     {
       mask = 1;
 
@@ -107,11 +112,37 @@ void HuffmanCompress::saveCompressedFile(const char *output, string code)
   }
 }
 
+// Salva a lista de caracteres e suas frequências no arquivo de saída
+void HuffmanCompress::saveIndex(const char *output)
+{
+  ofstream file(output);
+
+  if (file.is_open())
+  {
+    for (int i = 0; i < TAM; i++)
+    {
+      if (frequency[i] > 0)
+      {
+        file << i << " " << frequency[i] << endl;
+      }
+    }
+
+    file.close();
+  }
+  else
+  {
+    throw FailedToOpenFile(output);
+  }
+}
+
 // Comprime o arquivo de entrada e salva o arquivo de saída
 void HuffmanCompress::compress(const char *input, const char *output)
 {
   // Contando a frequência de cada caractere
   this->countFrequency(input);
+
+  // Salvando a lista no arquivo de saída
+  this->saveIndex("./bin/index.txt");
 
   List *list = new List();
 
@@ -135,4 +166,8 @@ void HuffmanCompress::compress(const char *input, const char *output)
 
   // Salvando o código do arquivo de entrada no arquivo de saída
   this->saveCompressedFile(output, code);
+
+  delete list;
+  delete tree;
+  delete dictionary;
 }
