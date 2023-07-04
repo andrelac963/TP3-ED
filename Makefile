@@ -8,35 +8,44 @@
 #					: make clean - remove objetos e executável
 #---------------------------------------------------------------------
 
-CC = gcc
+CC = g++
 LIBS = -lm
 SRC = src
 OBJ = obj
 INC = include
 BIN = bin
-OBJS = $(OBJ)/main.o $(OBJ)/List.o
-HDRS = $(INC)/List.h $(INC)/HuffmanCompress.h $(INC)/HuffmanDecompress.h
+OBJS = $(OBJ)/main.o $(OBJ)/HuffmanCompress.o $(OBJ)/HuffmanDecompress.o $(OBJ)/Node.o $(OBJ)/List.o $(OBJ)/Tree.o $(OBJ)/Dictionary.o 
+HDRS = $(INC)/Exceptions.hpp $(INC)/HuffmanCompress.hpp $(INC)/HuffmanDecompress.hpp $(INC)/Node.hpp $(INC)/List.hpp $(INC)/Tree.hpp $(INC)/Dictionary.hpp
 CFLAGS = -Wall -c -I$(INC)
 
 EXE = $(BIN)/main
 
 all:  $(EXE)
-	$(EXE) descompactado.txt compactado.txt -c
+	$(EXE) texto.txt compactado.txt -c
 
 $(BIN)/main: $(OBJS)
-	$(CC) -g -o $(BIN)/main $(OBJS) $(LIBS)
+	$(CC) -o $(BIN)/main $(OBJS) $(LIBS)
 
-$(OBJ)/main.o: $(HDRS) $(SRC)/main.c
-	$(CC) $(CFLAGS) -o $(OBJ)/main.o $(SRC)/main.c
+$(OBJ)/main.o: $(HDRS) $(SRC)/main.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/main.o $(SRC)/main.cpp
 
-$(OBJ)/List.o: $(HDRS) $(SRC)/List.c
-	$(CC) $(CFLAGS) -o $(OBJ)/List.o $(SRC)/List.c
+$(OBJ)/HuffmanCompress.o: $(HDRS) $(SRC)/HuffmanCompress.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/HuffmanCompress.o $(SRC)/HuffmanCompress.cpp
 
-$(OBJ)/HuffmanCompress.o: $(HDRS) $(SRC)/HuffmanCompress.c
-	$(CC) $(CFLAGS) -o $(OBJ)/HuffmanCompress.o $(SRC)/HuffmanCompress.c
+$(OBJ)/HuffmanDecompress.o: $(HDRS) $(SRC)/HuffmanDecompress.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/HuffmanDecompress.o $(SRC)/HuffmanDecompress.cpp
 
-$(OBJ)/HuffmanDecompress.o: $(HDRS) $(SRC)/HuffmanDecompress.c
-	$(CC) $(CFLAGS) -o $(OBJ)/HuffmanDecompress.o $(SRC)/HuffmanDecompress.c
+$(OBJ)/Node.o: $(HDRS) $(SRC)/Node.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/Node.o $(SRC)/Node.cpp
+
+$(OBJ)/List.o: $(HDRS) $(SRC)/List.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/List.o $(SRC)/List.cpp
+
+$(OBJ)/Tree.o: $(HDRS) $(SRC)/Tree.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/Tree.o $(SRC)/Tree.cpp
+
+$(OBJ)/Dictionary.o: $(HDRS) $(SRC)/Dictionary.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/Dictionary.o $(SRC)/Dictionary.cpp
 	
 clean:
 	rm -f $(EXE) $(OBJS) gmon.out

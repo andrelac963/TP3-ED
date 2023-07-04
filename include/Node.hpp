@@ -1,21 +1,25 @@
 //---------------------------------------------------------------------
-// Arquivo      : HuffmanCompress.hpp
+// Arquivo      : Node.hpp
 // Conteudo     : programa
 // Autor        : André Luiz Alves Costa (andrelac963@gmail.com)
 // Historico    : 2023-00-00 - arquivo criado
 //---------------------------------------------------------------------
 
-#ifndef HUFFMANCOMPRESS_HPP
-#define HUFFMANCOMPRESS_HPP
+#ifndef NODE_HPP
+#define NODE_HPP
 
-using namespace std;
+#include <cstdlib>
 
-class HuffmanCompress
+class Node
 {
 public:
-  HuffmanCompress();
-  ~HuffmanCompress();
-  void compress(const char *input, const char *output);
+  unsigned char character;
+  unsigned int frequency;
+  Node *left, *right, *next;
+
+  Node();
+  Node(unsigned char character, unsigned int frequency);
+  ~Node();
 };
 
 #endif
