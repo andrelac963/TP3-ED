@@ -7,12 +7,14 @@
 
 #include "List.hpp"
 
+// Construtor
 List::List()
 {
   this->head = NULL;
   this->size = 0;
 }
 
+// Destrutor que desaloca a lista
 List::~List()
 {
   Node *current = this->head;
@@ -25,6 +27,7 @@ List::~List()
   }
 }
 
+// Função que insere um nó na lista
 void List::insert(Node *node)
 {
   Node *current = this->head;
@@ -50,6 +53,7 @@ void List::insert(Node *node)
   this->size++;
 }
 
+// Função que preenche a lista com os caracteres e suas frequências
 void List::fillList(unsigned int frequency[])
 {
   for (int i = 0; i < TAM; i++)
@@ -62,6 +66,7 @@ void List::fillList(unsigned int frequency[])
   }
 }
 
+// Função que remove o primeiro nó da lista
 Node *List::removeHead()
 {
   Node *temp = this->head;
@@ -70,23 +75,39 @@ Node *List::removeHead()
   return temp;
 }
 
+// Função que retorna o primeiro nó da lista
 Node *List::getHead()
 {
   return this->head;
 }
 
+// Função que retorna o nó de um determinado índice
+Node *List::getNode(int index)
+{
+  Node *current = this->head;
+
+  for (int i = 0; i < index; i++)
+  {
+    current = current->next;
+  }
+
+  return current;
+}
+
+// Função que retorna o tamanho da lista
 int List::getSize()
 {
   return this->size;
 }
 
+// Função que imprime a lista
 void List::printList()
 {
   Node *current = this->head;
 
   while (current != NULL)
   {
-    cout << current->character << " " << current->frequency << endl;
+    cout << current->character << " : " << current->frequency << endl;
     current = current->next;
   }
 }

@@ -20,6 +20,8 @@
 
 using namespace std;
 
+class Node;
+
 class Dictionary
 {
 public:
@@ -27,8 +29,8 @@ public:
   Dictionary(int rows);
   ~Dictionary();
   void fillDictionary(Node *root, char *code, int rows);
-  int sizeText(unsigned char *text);
   char *getCode(unsigned char character);
+  void setCode(unsigned char character, string code);
   void printDictionary();
 };
 

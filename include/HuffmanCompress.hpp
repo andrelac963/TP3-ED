@@ -23,6 +23,8 @@
 
 using namespace std;
 
+class Dictionary;
+
 class HuffmanCompress
 {
 private:
@@ -31,8 +33,10 @@ private:
 public:
   HuffmanCompress();
   ~HuffmanCompress();
-  void CountFrequency(const char *input);
-  void Compress(const char *input, const char *output);
+  void countFrequency(const char *input);
+  string encode(Dictionary *dictionary, const char *input);
+  void saveCompressedFile(const char *output, string code);
+  void compress(const char *input, const char *output);
 };
 
 #endif

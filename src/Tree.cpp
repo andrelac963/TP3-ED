@@ -7,16 +7,19 @@
 
 #include "Tree.hpp"
 
+// Construtor
 Tree::Tree()
 {
   this->root = NULL;
 }
 
+// Destrutor
 Tree::~Tree()
 {
   delete this->root;
 }
 
+// Função que constrói a árvore de Huffman a partir de uma lista
 void Tree::buildTree(List *list)
 {
   Node *node1, *node2, *node3;
@@ -37,16 +40,19 @@ void Tree::buildTree(List *list)
   this->root = list->removeHead();
 }
 
+// Função que seta a raiz da árvore
 void Tree::setRoot(Node *root)
 {
   this->root = root;
 }
 
+// Função que retorna a raiz da árvore
 Node *Tree::getRoot()
 {
   return this->root;
 }
 
+// Função que retorna a altura da árvore
 int Tree::getHeight(Node *root)
 {
   int leftHeight, rightHeight;
@@ -71,6 +77,7 @@ int Tree::getHeight(Node *root)
   }
 }
 
+// Função que imprime a árvore
 void Tree::printTree(Node *root, int height)
 {
   if (root->left == NULL && root->right == NULL)

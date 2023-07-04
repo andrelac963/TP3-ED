@@ -32,13 +32,13 @@ int main(int argc, char *argv[])
     if (!strcmp(option, "-c"))
     {
       HuffmanCompress *compressor = new HuffmanCompress();
-      compressor->Compress(input, output);
+      compressor->compress(input, output);
       delete compressor;
     }
     else if (!strcmp(option, "-d"))
     {
       HuffmanDecompress *decompressor = new HuffmanDecompress();
-      decompressor->Decompress(input, output);
+      decompressor->decompress(input, output);
       delete decompressor;
     }
     else

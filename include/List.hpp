@@ -17,6 +17,8 @@
 
 using namespace std;
 
+class Node;
+
 class List
 {
 private:
@@ -30,6 +32,7 @@ public:
   void fillList(unsigned int frequency[]);
   Node *removeHead();
   Node *getHead();
+  Node *getNode(int index);
   int getSize();
   void printList();
 };

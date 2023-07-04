@@ -7,6 +7,7 @@
 
 #include "Node.hpp"
 
+// Construtor padrão
 Node::Node()
 {
   this->character = '\0';
@@ -16,6 +17,7 @@ Node::Node()
   this->next = NULL;
 }
 
+// Construtor que recebe o caractere e a frequência
 Node::Node(unsigned char character, unsigned int frequency)
 {
   this->character = character;
@@ -25,6 +27,7 @@ Node::Node(unsigned char character, unsigned int frequency)
   this->next = NULL;
 }
 
+// Destrutor
 Node::~Node()
 {
   delete this->left;

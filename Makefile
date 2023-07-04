@@ -16,15 +16,15 @@ INC = include
 BIN = bin
 OBJS = $(OBJ)/main.o $(OBJ)/HuffmanCompress.o $(OBJ)/HuffmanDecompress.o $(OBJ)/Node.o $(OBJ)/List.o $(OBJ)/Tree.o $(OBJ)/Dictionary.o 
 HDRS = $(INC)/Exceptions.hpp $(INC)/HuffmanCompress.hpp $(INC)/HuffmanDecompress.hpp $(INC)/Node.hpp $(INC)/List.hpp $(INC)/Tree.hpp $(INC)/Dictionary.hpp
-CFLAGS = -Wall -c -I$(INC)
+CFLAGS = -Wall -g -c -I$(INC)
 
 EXE = $(BIN)/main
 
 all:  $(EXE)
-	$(EXE) texto.txt compactado.txt -c
+	$(EXE) texto.txt compactado.bin -c
 
 $(BIN)/main: $(OBJS)
-	$(CC) -o $(BIN)/main $(OBJS) $(LIBS)
+	$(CC) -g -o $(BIN)/main $(OBJS) $(LIBS)
 
 $(OBJ)/main.o: $(HDRS) $(SRC)/main.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/main.o $(SRC)/main.cpp
@@ -46,6 +46,6 @@ $(OBJ)/Tree.o: $(HDRS) $(SRC)/Tree.cpp
 
 $(OBJ)/Dictionary.o: $(HDRS) $(SRC)/Dictionary.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/Dictionary.o $(SRC)/Dictionary.cpp
-	
+
 clean:
-	rm -f $(EXE) $(OBJS) gmon.out
+	rm -f $(EXE) $(OBJS) gmon.out compactado.bin descompactado.txt

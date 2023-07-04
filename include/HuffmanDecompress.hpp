@@ -20,12 +20,16 @@
 
 using namespace std;
 
+class Dictionary;
+
 class HuffmanDecompress
 {
 public:
   HuffmanDecompress();
   ~HuffmanDecompress();
-  void Decompress(const char *input, const char *output);
+  Dictionary *readDictionary(const char *input);
+  string decode(Dictionary *dictionary, const char *input);
+  void decompress(const char *input, const char *output);
 };
 
 #endif

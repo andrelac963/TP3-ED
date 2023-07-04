@@ -7,6 +7,7 @@
 
 #include "Dictionary.hpp"
 
+// Construtor que aloca a matriz de caracteres
 Dictionary::Dictionary(int rows)
 {
   this->dictionary = new char *[TAM];
@@ -18,6 +19,7 @@ Dictionary::Dictionary(int rows)
   }
 }
 
+// Destrutor que desaloca a matriz de caracteres
 Dictionary::~Dictionary()
 {
   for (int i = 0; i < TAM; i++)
@@ -28,6 +30,7 @@ Dictionary::~Dictionary()
   delete[] this->dictionary;
 }
 
+// Função que preenche a matriz de caracteres com os códigos da árvore de Huffman
 void Dictionary::fillDictionary(Node *root, char *code, int rows)
 {
   if (root->left != NULL)
@@ -52,23 +55,19 @@ void Dictionary::fillDictionary(Node *root, char *code, int rows)
   }
 }
 
-int Dictionary::sizeText(unsigned char *text)
-{
-  int i = 0;
-  int size = 0;
-  while (text[i] != '\0')
-  {
-    size += strlen(this->dictionary[text[i]]);
-    i++;
-  }
-  return size;
-}
-
+// Função que retorna o código de um caractere
 char *Dictionary::getCode(unsigned char character)
 {
   return this->dictionary[character];
 }
 
+// Função que seta o código de um caractere
+void Dictionary::setCode(unsigned char character, string code)
+{
+  strcpy(this->dictionary[character], code.c_str());
+}
+
+// Função que imprime a matriz de caracteres
 void Dictionary::printDictionary()
 {
   for (int i = 0; i < TAM; i++)
