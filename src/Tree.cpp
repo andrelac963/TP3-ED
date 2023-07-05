@@ -26,17 +26,21 @@ void Tree::buildTree(List *list)
 
   while (list->getSize() > 1)
   {
+    // Remove os dois nós de menor frequência da lista
     node1 = list->removeHead();
     node2 = list->removeHead();
 
+    // Cria um novo nó com os dois nós removidos como filhos
     node3 = new Node('*', node1->frequency + node2->frequency);
 
     node3->left = node1;
     node3->right = node2;
 
+    // Insere o novo nó na lista
     list->insert(node3);
   }
 
+  // Seta a raiz da árvore
   this->root = list->removeHead();
 }
 
@@ -63,9 +67,11 @@ int Tree::getHeight(Node *root)
   }
   else
   {
+    // Chama a função recursivamente para os filhos
     leftHeight = getHeight(root->left);
     rightHeight = getHeight(root->right);
 
+    // Retorna a altura do maior filho + 1
     if (leftHeight < rightHeight)
     {
       return rightHeight + 1;

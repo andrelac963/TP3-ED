@@ -33,6 +33,7 @@
 
 # Test files
 *.txt
+*.bin
 
 # Config files
 /.vscode

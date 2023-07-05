@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <locale>
+#include <sys/resource.h>
 #include <cstring>
 #include "Exceptions.hpp"
 #include "HuffmanCompress.hpp"
@@ -14,9 +15,18 @@
 
 using namespace std;
 
+// Função para calcular o tempo de execução
+float difTempoUsuario(struct rusage *start, struct rusage *end)
+{
+  return (end->ru_utime.tv_sec - start->ru_utime.tv_sec) +
+         1e-6 * (end->ru_utime.tv_usec - start->ru_utime.tv_usec);
+}
+
 int main(int argc, char *argv[])
 {
   setlocale(LC_ALL, "Portuguese");
+
+  struct rusage start, end;
 
   try
   {
@@ -31,15 +41,33 @@ int main(int argc, char *argv[])
 
     if (!strcmp(option, "-c"))
     {
+      getrusage(RUSAGE_SELF, &start);
+
+      cout << endl
+           << "Comprimindo arquivo..." << endl;
+
+      // Compressão do arquivo de entrada e gravação do arquivo de saída
       HuffmanCompress *compressor = new HuffmanCompress();
       compressor->compress(input, output);
       delete compressor;
+
+      getrusage(RUSAGE_SELF, &end);
+      cout << "Tempo de execução: " << difTempoUsuario(&start, &end) << " segundos" << endl;
     }
     else if (!strcmp(option, "-d"))
     {
+      getrusage(RUSAGE_SELF, &start);
+
+      cout << endl
+           << "Descomprimindo arquivo..." << endl;
+
+      // Descompressão do arquivo de entrada e gravação do arquivo de saída
       HuffmanDecompress *decompressor = new HuffmanDecompress();
       decompressor->decompress(input, output);
       delete decompressor;
+
+      getrusage(RUSAGE_SELF, &end);
+      cout << "Tempo de execução: " << difTempoUsuario(&start, &end) << " segundos" << endl;
     }
     else
     {

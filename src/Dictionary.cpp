@@ -12,6 +12,7 @@ Dictionary::Dictionary(int rows)
 {
   this->dictionary = new char *[TAM];
 
+  // Inicializa a matriz de caracteres com strings vazias
   for (int i = 0; i < TAM; i++)
   {
     this->dictionary[i] = new char[rows];
@@ -33,6 +34,7 @@ Dictionary::~Dictionary()
 // Função que preenche a matriz de caracteres com os códigos da árvore de Huffman
 void Dictionary::fillDictionary(Node *root, char *code, int rows)
 {
+  // Se o nó não for uma folha, chama a função recursivamente para os filhos
   if (root->left != NULL)
   {
     char *codeLeft = new char[rows];
@@ -41,6 +43,7 @@ void Dictionary::fillDictionary(Node *root, char *code, int rows)
     this->fillDictionary(root->left, codeLeft, rows);
   }
 
+  // Se o nó não for uma folha, chama a função recursivamente para os filhos
   if (root->right != NULL)
   {
     char *codeRight = new char[rows];
@@ -49,6 +52,7 @@ void Dictionary::fillDictionary(Node *root, char *code, int rows)
     this->fillDictionary(root->right, codeRight, rows);
   }
 
+  // Se o nó for uma folha, seta o código do caractere
   if (root->left == NULL && root->right == NULL)
   {
     strcpy(this->dictionary[root->character], code);

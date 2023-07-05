@@ -74,6 +74,7 @@ void HuffmanCompress::saveCompressedFile(const char *output, string code)
 
   if (file.is_open())
   {
+    // Usa um byte para armazenar o código binário e uma mascara para setar os bits
     int j = 7;
     unsigned char mask, byte = 0;
 
@@ -83,6 +84,7 @@ void HuffmanCompress::saveCompressedFile(const char *output, string code)
     {
       mask = 1;
 
+      // Se o bit for 1, seta o bit na posição j
       if (code[i] == '1')
       {
         mask = mask << j;
@@ -121,6 +123,7 @@ void HuffmanCompress::saveIndex(const char *output)
   {
     for (int i = 0; i < TAM; i++)
     {
+      // Se o caractere tiver frequência maior que 0, salva no arquivo de saída
       if (frequency[i] > 0)
       {
         file << i << " " << frequency[i] << endl;
@@ -142,7 +145,7 @@ void HuffmanCompress::compress(const char *input, const char *output)
   this->countFrequency(input);
 
   // Salvando a lista no arquivo de saída
-  this->saveIndex("./bin/index.txt");
+  this->saveIndex("./temp/index.txt");
 
   List *list = new List();
 
