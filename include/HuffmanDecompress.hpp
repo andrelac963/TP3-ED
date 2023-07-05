@@ -2,7 +2,7 @@
 // Arquivo      : HuffmanDecompress.hpp
 // Conteudo     : programa
 // Autor        : André Luiz Alves Costa (andrelac963@gmail.com)
-// Historico    : 2023-00-00 - arquivo criado
+// Historico    : 2023-07-04 - arquivo finalizado
 //---------------------------------------------------------------------
 
 #ifndef HUFFMANDECOMPRESS_HPP

@@ -1,1 +1,2 @@
 # TP3-ED
+Para utilizar o programa é necessário estar em um ambiente linux, seja um OS ou WSL, que tenha instalado o compilador g++. Antes de compilar é necessário informar no make o caminho dos arquivos e a opção de utilização que o programa irá ler como um parâmetro de execução, depois disso é só rodar o comando make que ele irá compilar e executar em seguida. Os arquivos compactados e descompactados, e a tabela de frequência estarão na pasta “temp”.
